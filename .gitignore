@@ -1,3 +1,5 @@
 node_modules
 ssl/*
 !ssl/.gitkeepgi
+environment/*
+!environment/*~ 

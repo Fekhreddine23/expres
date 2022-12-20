@@ -1,24 +1,22 @@
-console.log("Projet démarré en " + process.env.NODE_ENV);
+//console.log("Projet démarré en " + process.env.NODE_ENV);
 
 
-const { readFileSync } = require('fs');
 const http = require('http');
 const https = require('https');
-const { resolve } = require('path');
 
-const httpsOptions = {
-    cert: readFileSync(resolve('ssl', 'dwaps.crt')),
-    key: readFileSync(resolve('ssl', 'dwaps.key'))
-}
+// Récupération des variables d'environnement
+// Les ports http et https
+// Et les contenus du certificat TLS et de la clé privée
+const { port, ssl: { cert, key }} = require(`../environment/env.${process.env.NODE_ENV}.js`);
 
 http
   .createServer((req, res) => {
     res.end('HTTP');
   })
-  .listen(7878);
+  .listen(port.http);
 
 https
-  .createServer(httpsOptions, (req, res) => {
+  .createServer({ cert, key }, (req, res) => {
     res.end('HTTPS');
   })
-  .listen(7979);
+  .listen(port.https);
