@@ -1,0 +1,24 @@
+console.log("Projet démarré en " + process.env.NODE_ENV);
+
+
+const { readFileSync } = require('fs');
+const http = require('http');
+const https = require('https');
+const { resolve } = require('path');
+
+const httpsOptions = {
+    cert: readFileSync(resolve('ssl', 'dwaps.crt')),
+    key: readFileSync(resolve('ssl', 'dwaps.key'))
+}
+
+http
+  .createServer((req, res) => {
+    res.end('HTTP');
+  })
+  .listen(7878);
+
+https
+  .createServer(httpsOptions, (req, res) => {
+    res.end('HTTPS');
+  })
+  .listen(7979);
