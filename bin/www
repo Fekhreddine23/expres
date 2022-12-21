@@ -8,7 +8,7 @@ const app = require('../app'); //import de app
 // Récupération des variables d'environnement
 // Les ports http et https
 // Et les contenus du certificat TLS et de la clé privée
-const { port, ssl: { cert, key }} = require(`../environment/env.${process.env.NODE_ENV}.js`);
+const { port, ssl: { cert, key }} = require(`../environnement/env.${process.env.NODE_ENV}.js`);
 
 http
   .createServer((req, res) => {
@@ -16,8 +16,8 @@ http
     res.writeHead(301, { Location: redirectUrl });
     res.end('HTTP');
   })
-  .listen(port.http);
+  .listen(port.http); 
 
 https
-  .createServer({ cert, key }, app)
+  .createServer({ cert, key }, app) //passe en argument la variable app que j'ai importé
   .listen(port.https);
