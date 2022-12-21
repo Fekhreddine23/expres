@@ -3,6 +3,7 @@
 
 const http = require('http');
 const https = require('https');
+const app = require('../app'); //import de app
 
 // Récupération des variables d'environnement
 // Les ports http et https
@@ -11,12 +12,12 @@ const { port, ssl: { cert, key }} = require(`../environment/env.${process.env.NO
 
 http
   .createServer((req, res) => {
+    const redirectUrl = `https://${req.headers.host.split(':')[0]}:${port.https}${req.url}`;
+    res.writeHead(301, { Location: redirectUrl });
     res.end('HTTP');
   })
   .listen(port.http);
 
 https
-  .createServer({ cert, key }, (req, res) => {
-    res.end('HTTPS');
-  })
+  .createServer({ cert, key }, app)
   .listen(port.https);
