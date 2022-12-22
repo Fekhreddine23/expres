@@ -6,11 +6,13 @@ const router = express.Router();
 
 const appRoutes = require('./routing/app-routes');
 const appApiRoutes = require('./routing/api-app-routes');
-module.exports = app;
+
 
 
 //CONFIGURATION GENERALE
 app.use(express.static(resolve('public')));
+app.use(appRoutes )
+app.use(appApiRoutes ) 
 
 
- 
+module.exports = app;
