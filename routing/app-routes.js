@@ -4,19 +4,13 @@ const { resolve } = require('path');
 const router = require('express').Router();
  
  /*/ Créer les routes en GET permettant de charger les fichier */
-router.get('/contact', function (req, res) {
-    res.sendFile(resolve('public', 'contact.html'));
-});
+router.get('/contact', controllerContact );
 
-router.get('/services', function (req, res) {
-    res.sendFile(resolve('public', 'services.html'));
-});
+router.get('/services', controllerServices );
 
+router.get('/index', controllerAccueil )
  
-router.get('*', function (req, res) { // * route par defaut TOUJOURS DECLARER A LA FIN
-    res.sendFile(resolve('public', 'page404.html'));
-     
-});
+router.get('*', controllerDefault );
 
 //add the router
  
