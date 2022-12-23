@@ -13,7 +13,7 @@ router.get('/services', controllerServices );
 
 router.get('/index',  controllerAccueil )
  
-router.get('*',  controllerDefault );
+
 
 //add the router
   
