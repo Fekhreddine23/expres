@@ -2,15 +2,17 @@
 const { resolve } = require('path');
 
 const router = require('express').Router();
+
+const controllerApp = require('../controllers/controller.js');
  
  /*/ Créer les routes en GET permettant de charger les fichier */
-router.get('/contact', controllerContact );
+router.get('/contact', controllerApp.controllerContact );
 
-router.get('/services', controllerServices );
+router.get('/services', controllerApp.controllerServices );
 
-router.get('/index', controllerAccueil )
+router.get('/index', controllerApp.controllerAccueil )
  
-router.get('*', controllerDefault );
+router.get('*', controllerApp.controllerDefault );
 
 //add the router
  
