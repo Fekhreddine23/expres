@@ -1,8 +1,8 @@
 const { resolve } = require('path');
 const router = require('express').Router();
 
-
-const {controllerAccueil} = require('../controllers/api-controller.js'); //destructuration methode controllerAccueil
+//destructuration methode controllerAccueil
+const {controllerAccueil} = require('../controllers/api-controller.js'); 
 
 router.get('/api/users', controllerAccueil );
 
