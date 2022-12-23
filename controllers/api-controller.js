@@ -1,5 +1,5 @@
 
-
+const { resolve } = require('path');
 
 const controllerAccueil = function(req,res){
     const data = require('./database/data.json')

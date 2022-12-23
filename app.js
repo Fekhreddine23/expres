@@ -2,17 +2,13 @@ const express = require('express');
 const { resolve } = require('path');
 const app = express();
 const path = require('path');
-const router = express.Router();
-
-const {appRoutes, apiRouter} = require('./routing/index');
+const router = require('./routing');
+ 
  
 
-
-
 //CONFIGURATION GENERALE
-app.use(express.static(resolve('public')));
-app.use(appRoutes )
-app.use(apiRouter ) 
+app.use(express.static(resolve('public'), {index: false}));
 
-
+app.use(router);
+ 
 module.exports = app;
