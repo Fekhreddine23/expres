@@ -20,21 +20,51 @@
         <a href="/services">Service</a>
 
     </nav>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>utilisateurs</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
     <script>
 
-        const data = { users: 'example' };
-
-        fetch('/api/users', { //passe par le serveur api
-           // method: 'GET', //    
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data.users);
+        let tbody = document.querySelector("tbody"); //selectionne le body    
+        fetch('/api/users')//passe par le serveur api
+            .then((response) => {
+                return response.json();
             })
-            .catch((error) => {
-                console.error('Error:', error);
+            .then((data) => {
+                //console.log(users);
+                for (user of data.users) {
+                    
+                    let tr = document.createElement("tr"); //creer un element tr qui est une cellule
+                    tbody.appendChild(tr); //dans le body insert element tr
+
+                    //appel execution de la fonction qui creer une cellule
+                    createCell(tr, user.id);
+                    createCell(tr, user.pseudo);
+                    createCell(tr, user.email);
+                    createCell(tr, user.address.street, user.address.zipcode, user.address.city);
+
+                }
             });
 
+        // Création d'une cellule d'un tableau avec comme contenu les arguments qu'on passe en paramètre
+        // row = l'élément <tr> dans lequel on doit insérer nos cellules <td>
+        // ...args = récupère tous les arguments suivants row passés en paramètres de la fonction createCell()
+        function createCell(row, ...args) {
+            console.log(args);
+            return row.innerHTML += `<td>${args}</td>`;
+        }
 
     </script>
 </body>
