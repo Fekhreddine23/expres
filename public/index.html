@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Accueil</title>
 </head>
+
 <body>
 
     <h1> Accueil </h1>
@@ -16,8 +18,25 @@
         <a href="/home"> Accueil</a>
         <a href="/contact">Contact</a>
         <a href="/services">Service</a>
-        
+
     </nav>
-    <script src="/js/script.js"></script>
+    <script>
+
+        const data = { users: 'example' };
+
+        fetch('/api/users', { //passe par le serveur api
+           // method: 'GET', //    
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data.users);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+    </script>
 </body>
+
 </html>
