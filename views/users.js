@@ -1,6 +1,6 @@
 const {users} = require('../database/data.json');
 
-module.exports.html = `
+module.exports = `
   <table>
     <tr>
       <th>Pseudo</th>
